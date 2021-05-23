@@ -3,7 +3,7 @@
 
 # Decisions:
 1. Did not format images as squares from the design to preserve more of the original ratio 
-2. Used <img> tags instead of `background-image` for property pictures since it's part of the content for better SEO and accessibility
+2. Used `<img>` tags instead of `background-image` for property pictures since it's part of the content for better SEO and accessibility
 
 # Leftover items:
 1. The condition to display the correct icon is not properly set, although the state is preserved correctly
