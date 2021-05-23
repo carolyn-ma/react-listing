@@ -6,7 +6,7 @@
 2. Used `<img>` tags instead of `background-image` for property pictures since it's part of the content for better SEO and accessibility
 
 # Leftover items:
-1. The condition to display the correct icon is not properly set, although the state is preserved correctly
+1. The condition to display the correct icon is not properly set, although the state is preserved correctly (fixed in branch 'fixed')
 2. Unit tests to cover the components and favorite/unfavorite actions
 
 # Other Improvement Directions:
