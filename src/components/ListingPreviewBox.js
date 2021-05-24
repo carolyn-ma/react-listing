@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FavoriteIcon from './FavoriteIcon';
 
 const styles = {
@@ -33,7 +34,7 @@ const styles = {
   },
 };
 
-export const ListingPreviewBox = ({ listing, isFavorite, toggleFavorite }) => {
+const ListingPreviewBox = ({ listing, isFavorite, toggleFavorite }) => {
   const property = listing.property;
   const currencyOptions = {
     style: 'currency',
@@ -77,3 +78,11 @@ export const ListingPreviewBox = ({ listing, isFavorite, toggleFavorite }) => {
     </div>
   );
 };
+
+ListingPreviewBox.propTypes = {
+  listing: PropTypes.object,
+  isFavorite: PropTypes.bool,
+  toggleFavorite: PropTypes.func.isRequired,
+};
+
+export default ListingPreviewBox;

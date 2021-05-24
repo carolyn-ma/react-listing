@@ -9,10 +9,10 @@ function App() {
     <Router>
       <div className="body code">
         <Header />
-        <Route path={ paths.home }>
-          <Redirect to={ paths.listings } />
+        <Route path={paths.home}>
+          <Redirect to={paths.listings} />
         </Route>
-        <Route path={ paths.listings }>
+        <Route path={paths.listings}>
           <Listings />
         </Route>
         {/* <Footer /> */}
