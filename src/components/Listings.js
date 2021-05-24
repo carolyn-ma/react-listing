@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { LocalStorageKeys } from '../apis/_apis';
 import { getPropertyListings } from '../apis/getPropertyListings';
-import { ListingPreviewBox } from './ListingPreviewBox';
+import ListingPreviewBox from './ListingPreviewBox';
 
 const styles = {
   background: '#ffffff',
@@ -18,8 +18,9 @@ export const Listings = () => {
     getPropertyListings();
   });
 
-  const listings =
-    window.localStorage.getItem(LocalStorageKeys.listings) ?? '[]';
+  const [listings] = useState(
+    window.localStorage.getItem(LocalStorageKeys.listings) ?? '[]',
+  );
 
   const [favorites, setFavorites] = useState(() => {
     const savedFavorites = window.localStorage.getItem(
@@ -31,10 +32,8 @@ export const Listings = () => {
 
   const toggleFavorite = (id, isFavorite) => {
     setFavorites((prevState) => ({
-      favorites: {
-        ...prevState.favorites,
-        [id]: !isFavorite,
-      },
+      ...prevState,
+      [id]: !isFavorite,
     }));
     window.localStorage.setItem(
       LocalStorageKeys.favorites,
@@ -42,14 +41,17 @@ export const Listings = () => {
     );
   };
 
-  const listingBoxes = JSON.parse(listings)?.map((listing) => (
-    <ListingPreviewBox
-      key={listing.mlsId}
-      listing={listing}
-      isFavorite={favorites[listing.mlsId] ?? false}
-      toggleFavorite={toggleFavorite}
-    />
-  ));
+  const listingBoxes = JSON.parse(listings)?.map((listing) => {
+    const isFav = favorites?.[listing.mlsId] || false;
+    return (
+      <ListingPreviewBox
+        key={listing.mlsId}
+        listing={listing}
+        isFavorite={isFav}
+        toggleFavorite={toggleFavorite}
+      />
+    );
+  });
 
   return <div style={styles}>{listingBoxes}</div>;
 };
